@@ -6,6 +6,7 @@ function StarWarsProvider({ children }) {
   const [data, setData] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [filterByNumber, setFilterByNumber] = useState({
     column: '',
@@ -26,14 +27,42 @@ function StarWarsProvider({ children }) {
   }, []);
 
   const handleButtonFilter = () => {
-    const arrayPlanetsFilter = dataFilter.filter((planet) => {
-      if (filterByNumber.comparison === 'maior que') {
-        return Number(planet[filterByNumber.column]) > Number(filterByNumber.number);
-      } if (filterByNumber.comparison === 'menor que') {
-        return Number(planet[filterByNumber.column]) < Number(filterByNumber.number);
-      }
-      return Number(planet[filterByNumber.column]) === Number(filterByNumber.number);
-    });
+    const arrayFilter = [...filters, filterByNumber];
+
+    // let array = dataFilter;
+    // arrayFilter.forEach((filter) => {
+    //   array = array.filter((planet) => {
+    //     if (filter.comparison === 'maior que') {
+    //       return Number(planet[filter.column]) > Number(filter.number);
+    //     } if (filter.comparison === 'menor que') {
+    //       return Number(planet[filter.column]) < Number(filter.number);
+    //     }
+    //     return Number(planet[filter.column]) === Number(filter.number);
+    //   });
+    // });
+
+    const arrayPlanetsFilter = arrayFilter.reduce((acc, curr) => {
+      const newAcc = acc.filter((planet) => {
+        if (curr.comparison === 'maior que') {
+          return Number(planet[curr.column]) > Number(curr.number);
+        } if (curr.comparison === 'menor que') {
+          return Number(planet[curr.column]) < Number(curr.number);
+        }
+        return Number(planet[curr.column]) === Number(curr.number);
+      });
+      return newAcc;
+    }, dataFilter);
+
+    // const arrayPlanetsFilter = dataFilter.filter((planet) => {
+    //   if (filterByNumber.comparison === 'maior que') {
+    //     return Number(planet[filterByNumber.column]) > Number(filterByNumber.number);
+    //   } if (filterByNumber.comparison === 'menor que') {
+    //     return Number(planet[filterByNumber.column]) < Number(filterByNumber.number);
+    //   }
+    //   return Number(planet[filterByNumber.column]) === Number(filterByNumber.number);
+    // });
+
+    setFilters(arrayFilter);
     setDataFilter(arrayPlanetsFilter);
   };
 
@@ -52,6 +81,7 @@ function StarWarsProvider({ children }) {
     setFilterByName,
     setFilterByNumber,
     handleButtonFilter,
+    filters,
   };
 
   return (
