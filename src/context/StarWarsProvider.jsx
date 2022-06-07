@@ -7,6 +7,11 @@ function StarWarsProvider({ children }) {
   const [dataFilter, setDataFilter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterByName, setFilterByName] = useState({ name: '' });
+  const [filterByNumber, setFilterByNumber] = useState({
+    column: '',
+    comparison: '',
+    number: '',
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -19,6 +24,18 @@ function StarWarsProvider({ children }) {
         setLoading(false);
       });
   }, []);
+
+  const handleButtonFilter = () => {
+    const arrayPlanetsFilter = dataFilter.filter((planet) => {
+      if (filterByNumber.comparison === 'maior que') {
+        return Number(planet[filterByNumber.column]) > Number(filterByNumber.number);
+      } if (filterByNumber.comparison === 'menor que') {
+        return Number(planet[filterByNumber.column]) < Number(filterByNumber.number);
+      }
+      return Number(planet[filterByNumber.column]) === Number(filterByNumber.number);
+    });
+    setDataFilter(arrayPlanetsFilter);
+  };
 
   useEffect(() => {
     // Utilizar o includes de forma insensível proveniente do site Bobby Hadz
@@ -33,6 +50,8 @@ function StarWarsProvider({ children }) {
     dataFilter,
     filterByName,
     setFilterByName,
+    setFilterByNumber,
+    handleButtonFilter,
   };
 
   return (

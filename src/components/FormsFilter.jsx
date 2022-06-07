@@ -2,16 +2,30 @@ import React, { useContext, useEffect, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 function FormsFilter() {
-  const { setFilterByName } = useContext(StarWarsContext);
-  const [planetName, setPlanetName] = useState('');
-
-  const handleInput = ({ target: { value } }) => {
-    setPlanetName(value);
-  };
+  const { setFilterByName,
+    setFilterByNumber,
+    handleButtonFilter,
+  } = useContext(StarWarsContext);
+  const [filterName, setfilterName] = useState('');
+  const [filterColumn, setFilterColumn] = useState('population');
+  const [filterComparison, setFilterComparison] = useState('maior que');
+  const [filterNumber, setFilterNumber] = useState(0);
 
   useEffect(() => {
-    setFilterByName({ name: planetName });
-  }, [planetName, setFilterByName]);
+    setFilterByName({ name: filterName });
+    setFilterByNumber({
+      column: filterColumn,
+      comparison: filterComparison,
+      number: filterNumber,
+    });
+  }, [
+    filterName,
+    setFilterByName,
+    filterColumn,
+    filterComparison,
+    filterNumber,
+    setFilterByNumber,
+  ]);
 
   return (
     <form>
@@ -19,12 +33,61 @@ function FormsFilter() {
         <input
           type="text"
           data-testid="name-filter"
-          value={ planetName }
+          value={ filterName }
           id="name-filter"
           placeholder="Planet Name"
-          onChange={ handleInput }
+          onChange={ ({ target: { value } }) => setfilterName(value) }
         />
       </label>
+
+      <label htmlFor="column-filter">
+        <select
+          data-testid="column-filter"
+          value={ filterColumn }
+          name="column-filter"
+          id="column-filter"
+          onChange={ ({ target: { value } }) => setFilterColumn(value) }
+        >
+          <option value="population">population</option>
+          <option value="orbital_period">orbital_period</option>
+          <option value="diameter">diameter</option>
+          <option value="rotation_period">rotation_period</option>
+          <option value="surface_water">surface_water</option>
+        </select>
+      </label>
+
+      <label htmlFor="comparison-filter">
+        <select
+          data-testid="comparison-filter"
+          value={ filterComparison }
+          name="comparison-filter"
+          id="comparison-filter"
+          onChange={ ({ target: { value } }) => setFilterComparison(value) }
+        >
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
+        </select>
+      </label>
+
+      <label htmlFor="value-filter">
+        <input
+          type="number"
+          data-testid="value-filter"
+          value={ filterNumber }
+          id="value-filter"
+          placeholder="Number"
+          onChange={ ({ target: { value } }) => setFilterNumber(value) }
+        />
+      </label>
+
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ handleButtonFilter }
+      >
+        Filter
+      </button>
     </form>
   );
 }
