@@ -6,6 +6,7 @@ function FormsFilter() {
     setFilterByNumber,
     handleButtonFilter,
     filters,
+    columnOption,
   } = useContext(StarWarsContext);
   const [filterName, setfilterName] = useState('');
   const [filterColumn, setFilterColumn] = useState('population');
@@ -17,7 +18,7 @@ function FormsFilter() {
     setFilterByNumber({
       column: filterColumn,
       comparison: filterComparison,
-      number: filterNumber,
+      value: filterNumber,
     });
   }, [
     setFilterByName,
@@ -51,11 +52,14 @@ function FormsFilter() {
             id="column-filter"
             onChange={ ({ target: { value } }) => setFilterColumn(value) }
           >
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {columnOption.map((option) => (
+              <option
+                value={ option }
+                key={ option }
+              >
+                { option }
+              </option>
+            ))}
           </select>
         </label>
 
