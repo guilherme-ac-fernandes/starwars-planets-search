@@ -43,31 +43,6 @@ function StarWarsProvider({ children }) {
       });
   }, []);
 
-  const applyFilterOnData = (startData, array) => array.reduce((acc, curr) => {
-    const newAcc = acc.filter((planet) => {
-      if (curr.comparison === 'maior que') {
-        return Number(planet[curr.column]) > Number(curr.value);
-      } if (curr.comparison === 'menor que') {
-        return Number(planet[curr.column]) < Number(curr.value);
-      }
-      return Number(planet[curr.column]) === Number(curr.value);
-    });
-    return newAcc;
-  }, startData);
-
-  const handleButtonFilter = () => {
-    const arrayFilter = [...filters, filterByNumber];
-    const columnOptionFilter = arrayFilter.reduce((acc, curr) => {
-      const newAcc = acc.filter((option) => option !== curr.column);
-      return newAcc;
-    }, columnOption);
-
-    setColumnOption(columnOptionFilter);
-    const arrayPlanetsFilter = applyFilterOnData(dataFilter, arrayFilter);
-    setFilters(arrayFilter);
-    setDataFilter(arrayPlanetsFilter);
-  };
-
   const sortByPopulationASC = (a, b) => {
     // Proveniente da Documentação
     // link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -80,6 +55,18 @@ function StarWarsProvider({ children }) {
     return 0;
   };
 
+  const applyFilterOnData = (startData, array) => array.reduce((acc, curr) => {
+    const newAcc = acc.filter((planet) => {
+      if (curr.comparison === 'maior que') {
+        return Number(planet[curr.column]) > Number(curr.value);
+      } if (curr.comparison === 'menor que') {
+        return Number(planet[curr.column]) < Number(curr.value);
+      }
+      return Number(planet[curr.column]) === Number(curr.value);
+    });
+    return newAcc;
+  }, startData);
+
   useEffect(() => {
     // Utilizar o includes de forma insensível proveniente do site Bobby Hadz
     // link: https://bobbyhadz.com/blog/javascript-includes-case-insensitive
@@ -89,9 +76,22 @@ function StarWarsProvider({ children }) {
     setDataFilter(arrayPlanetsFilter);
   }, [filterByName, data, setDataFilter]);
 
+  const handleButtonFilter = (object) => {
+    setFilterByNumber(object);
+    const arrayFilter = [...filters, object];
+    const columnOptionFilter = arrayFilter.reduce((acc, curr) => {
+      const newAcc = acc.filter((option) => option !== curr.column);
+      return newAcc;
+    }, columnOption);
+
+    setColumnOption(columnOptionFilter);
+    const arrayPlanetsFilter = applyFilterOnData(dataFilter, arrayFilter);
+    setFilters(arrayFilter);
+    setDataFilter(arrayPlanetsFilter);
+  };
+
   const handleRemoveFilter = (option) => {
     const filtersChange = filters.filter((filter) => filter !== option);
-
     setFilters(filtersChange);
     setColumnOption([...columnOption, option.column]);
 
@@ -113,44 +113,47 @@ function StarWarsProvider({ children }) {
     setDataFilter(updateDataFilter);
   };
 
-  const orderByNumber = (a, b) => {
-    const { column, sort } = order;
-    if (sort === 'ASC') {
-      return a[column] - b[column];
-    }
-    return b[column] - a[column];
-  };
-
-  const handleSort = () => {
+  const handleSort = (object) => {
+    setOrder(object);
     const dataFilterCopy = [...dataFilter];
-    const dataFilterAndSort = dataFilterCopy.sort(orderByNumber);
     const arrayNumber = [];
     const arrayString = [];
-    dataFilterAndSort.forEach((planet) => {
-      if (typeof item === 'number') {
-        arrayNumber.push(planet);
-      } else {
+    const { column, sort } = object;
+    dataFilterCopy.forEach((planet) => {
+      if (planet[column] === 'unknown') {
         arrayString.push(planet);
+      } else {
+        arrayNumber.push(planet);
       }
     });
-    console.log([...arrayNumber, ...arrayString]);
 
-    setDataFilter([...arrayNumber, ...arrayString]);
+    let sortedArrayData = [];
+    if (sort === 'ASC') {
+      sortedArrayData = [
+        ...arrayString,
+        ...arrayNumber.sort((a, b) => a[column] - b[column]),
+      ];
+    } else {
+      sortedArrayData = [
+        ...arrayNumber.sort((a, b) => b[column] - a[column]),
+        ...arrayString,
+      ];
+    }
+    setDataFilter(sortedArrayData);
   };
 
   const contextValue = {
     loading,
     dataFilter,
     filterByName,
+    filterByNumber,
     setFilterByName,
-    setFilterByNumber,
     handleButtonFilter,
     filters,
     columnOption,
+    order,
     handleRemoveFilter,
     handleRemoveAllFilters,
-    order,
-    setOrder,
     handleSort,
   };
 

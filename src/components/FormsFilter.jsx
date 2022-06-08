@@ -3,13 +3,11 @@ import StarWarsContext from '../context/StarWarsContext';
 
 function FormsFilter() {
   const { setFilterByName,
-    setFilterByNumber,
     handleButtonFilter,
     filters,
     columnOption,
     handleRemoveFilter,
     handleRemoveAllFilters,
-    setOrder,
     handleSort,
   } = useContext(StarWarsContext);
 
@@ -22,26 +20,7 @@ function FormsFilter() {
 
   useEffect(() => {
     setFilterByName({ name: filterName });
-    setFilterByNumber({
-      column: filterColumn,
-      comparison: filterComparison,
-      value: filterNumber,
-    });
-    setOrder({
-      column: sortColumn,
-      sort: sortRadio,
-    });
-  }, [
-    setFilterByName,
-    filterName,
-    setFilterByNumber,
-    filterColumn,
-    filterComparison,
-    filterNumber,
-    setOrder,
-    sortColumn,
-    sortRadio,
-  ]);
+  }, [setFilterByName, filterName]);
 
   const renderColumnOptions = () => (columnOption.map((option) => (
     <option
@@ -54,7 +33,6 @@ function FormsFilter() {
 
   return (
     <section>
-
       <form>
         <label htmlFor="name-filter">
           <input
@@ -107,7 +85,11 @@ function FormsFilter() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ handleButtonFilter }
+          onClick={ () => handleButtonFilter({
+            column: filterColumn,
+            comparison: filterComparison,
+            value: filterNumber,
+          }) }
         >
           Filter
         </button>
@@ -152,7 +134,10 @@ function FormsFilter() {
         <button
           type="button"
           data-testid="column-sort-button"
-          onClick={ handleSort }
+          onClick={ () => handleSort({
+            column: sortColumn,
+            sort: sortRadio,
+          }) }
         >
           Sort Planets
         </button>
