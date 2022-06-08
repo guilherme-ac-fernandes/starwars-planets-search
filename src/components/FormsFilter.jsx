@@ -7,7 +7,10 @@ function FormsFilter() {
     handleButtonFilter,
     filters,
     columnOption,
+    handleRemoveFilter,
+    handleRemoveAllFilters,
   } = useContext(StarWarsContext);
+
   const [filterName, setfilterName] = useState('');
   const [filterColumn, setFilterColumn] = useState('population');
   const [filterComparison, setFilterComparison] = useState('maior que');
@@ -95,12 +98,31 @@ function FormsFilter() {
         >
           Filter
         </button>
+
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ handleRemoveAllFilters }
+        >
+          Remove Filters
+        </button>
+
       </form>
       <ul>
         {filters.map((filter, index) => {
           const { column, comparison, number } = filter;
           const string = `${column} | ${comparison} | ${number}`;
-          return (<li key={ index }>{ string }</li>);
+          return (
+            <li key={ index } data-testid="filter">
+              <span>{ string }</span>
+              <button
+                type="button"
+                onClick={ () => handleRemoveFilter(filter) }
+              >
+                X
+              </button>
+            </li>
+          );
         })}
       </ul>
     </section>
