@@ -7,7 +7,7 @@ import FormsFilter from './components/FormsFilter';
 function App() {
   return (
     <StarWarsProvider>
-      <span>Star Wars</span>
+      <h1>Star Wars Planet Search</h1>
       <FormsFilter />
       <Table />
     </StarWarsProvider>
