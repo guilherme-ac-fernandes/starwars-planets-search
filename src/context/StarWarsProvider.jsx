@@ -116,6 +116,9 @@ function StarWarsProvider({ children }) {
   const handleSort = (object) => {
     setOrder(object);
     const dataFilterCopy = [...dataFilter];
+
+    // Resolução do sort com string baseada na código presente no Stack OverFlow
+    // link: https://stackoverflow.com/questions/53958419/sort-an-array-which-contains-number-and-strings
     const arrayNumber = [];
     const arrayString = [];
     const { column, sort } = object;
