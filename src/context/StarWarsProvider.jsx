@@ -113,35 +113,40 @@ function StarWarsProvider({ children }) {
     setDataFilter(updateDataFilter);
   };
 
-  const handleSort = (object) => {
-    setOrder(object);
-    const dataFilterCopy = [...dataFilter];
+  // Resolução do sort com string baseada na código presente no Stack OverFlow
+  // link: https://stackoverflow.com/questions/53958419/sort-an-array-which-contains-number-and-strings
+  const splitDataWithUnknown = (column) => [...dataFilter].reduce((acc, curr) => {
+    if (curr[column] === 'unknown') {
+      acc.arrayString.push(curr);
+      return acc;
+    }
+    acc.arrayNumber.push(curr);
+    return acc;
+  }, {
+    arrayNumber: [],
+    arrayString: [],
+  });
 
-    // Resolução do sort com string baseada na código presente no Stack OverFlow
-    // link: https://stackoverflow.com/questions/53958419/sort-an-array-which-contains-number-and-strings
-    const arrayNumber = [];
-    const arrayString = [];
-    const { column, sort } = object;
-    dataFilterCopy.forEach((planet) => {
-      if (planet[column] === 'unknown') {
-        arrayString.push(planet);
-      } else {
-        arrayNumber.push(planet);
-      }
-    });
-
-    let sortedArrayData = [];
-    if (sort === 'ASC') {
-      sortedArrayData = [
+  const orderDataFilterBySort = (arrayString, arrayNumber, { column, sort }) => {
+    switch (sort) {
+    case 'ASC':
+      return [
         ...arrayString,
         ...arrayNumber.sort((a, b) => a[column] - b[column]),
       ];
-    } else {
-      sortedArrayData = [
+    default:
+      return [
         ...arrayNumber.sort((a, b) => b[column] - a[column]),
         ...arrayString,
       ];
     }
+  };
+
+  const handleSort = (object) => {
+    setOrder(object);
+    const { column } = object;
+    const { arrayString, arrayNumber } = splitDataWithUnknown(column);
+    const sortedArrayData = orderDataFilterBySort(arrayString, arrayNumber, object);
     setDataFilter(sortedArrayData);
   };
 

@@ -162,7 +162,7 @@ function FormsFilter() {
                 type="button"
                 onClick={ () => handleRemoveFilter(filter) }
               >
-                X
+                x
               </button>
             </li>
           );

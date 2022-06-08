@@ -4,6 +4,10 @@ import StarWarsContext from '../context/StarWarsContext';
 function Table() {
   const { dataFilter, loading } = useContext(StarWarsContext);
 
+  const createLink = (linkList, string) => (linkList.map((link, index) => (
+    <a href={ link } key={ `${string}-${index}` }>{`${link.split('/')[5]}º`}</a>
+  )));
+
   return (
     <section>
       <table>
@@ -44,10 +48,10 @@ function Table() {
                 <td>{ planet.terrain }</td>
                 <td>{ planet.surface_water }</td>
                 <td>{ planet.population }</td>
-                <td>{ planet.films }</td>
+                <td>{ createLink(planet.films, 'film') }</td>
                 <td>{ planet.created }</td>
                 <td>{ planet.edited }</td>
-                <td>{ planet.url }</td>
+                <td><a href={ planet.url }>More info</a></td>
               </tr>
             ))}
           </tbody>
