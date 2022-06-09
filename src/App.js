@@ -1,22 +1,18 @@
 import React from 'react';
 import StarWarsProvider from './context/StarWarsProvider';
-import './App.css';
+import Header from './components/Header';
 import Table from './components/Table';
-import FormsFilter from './components/FormsFilter';
-import logo from './image/star-wars-logo.png';
-import bb8 from './image/bb8.gif';
+import PlanetSeatch from './components/PlanetSearch';
+import './App.css';
 
 function App() {
   return (
     <StarWarsProvider>
       <main className="main">
-        <div>
-          <img src={ logo } alt="star wars logo" className="star-wars-logo" />
-          <h1>Planet Search</h1>
-        </div>
-        <img src={ bb8 } alt="bb8" className="bb8" />
-        <FormsFilter />
+        <Header />
+        <PlanetSeatch />
         <Table />
+        <img src="https://i.giphy.com/media/Um8EFa2XuwvDTVY87D/giphy.webp" alt="boba fetch" className="star-wars-logo" />
       </main>
     </StarWarsProvider>
   );

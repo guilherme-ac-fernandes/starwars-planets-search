@@ -6,22 +6,27 @@ function Table() {
   const { dataFilter, loading } = useContext(StarWarsContext);
 
   const createLink = (linkList, string) => (linkList.map((link, index) => (
-    <a href={ link } key={ `${string}-${index}` }>{`${link.split('/')[5]}º`}</a>
+    <a href={ link } key={ `${string}-${index}` } className="table-film-display">
+      {`${link.split('/')[5]}º`}
+    </a>
   )));
 
-  const formatedDisplayDate = (string) => {
-    const firstPart = string.split('.')[0].split('T');
-    const transformString = `
-    ${firstPart[0].replace('-', '/').replace('-', '/')} at ${firstPart[1]}
-    `;
-    return transformString;
+  const formatedDisplayDate = (info) => {
+    const date = info.split('.')[0].split('T');
+    return `${date[0].replace('-', '/').replace('-', '/')} at ${date[1]}`;
   };
+
+  // const uppercaseFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
+
+  // const formatedString = (phrase, string) => (phrase.split(', ').map((item, index) => (
+  //   <p key={ `${string}-${index}` }>{uppercaseFirstLetter(item)}</p>
+  // )));
 
   return (
     <section className="table-container">
-      <table className="table table-hover table-dark table-sm">
+      <table className="table table-hover table-dark table-sm align-middle">
         <thead>
-          <tr>
+          <tr className="align-middle">
             <th scope="col">Name</th>
             <th scope="col">Rotation Period</th>
             <th scope="col">Orbital Period</th>
@@ -53,13 +58,13 @@ function Table() {
                 <td>{ createLink(planet.films, 'film') }</td>
                 <td>{ formatedDisplayDate(planet.created) }</td>
                 <td>{ formatedDisplayDate(planet.edited) }</td>
-                <td><a href={ planet.url }>More info</a></td>
+                <td><a href={ planet.url }>Link</a></td>
               </tr>
             ))}
           </tbody>
         )}
       </table>
-      { loading && <h2>Loading...</h2>}
+      { loading && <h2 className="loading-table">Loading...</h2>}
     </section>
   );
 }

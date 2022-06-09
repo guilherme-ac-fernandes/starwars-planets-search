@@ -1,0 +1,22 @@
+.display-filters-container {
+  list-style: none;
+  margin-block: 20px;
+  text-transform: uppercase;
+}
+
+.filter-container {
+  align-items: center;
+  border: 1px solid #e1e5eb;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) , 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-block: 10px;
+  text-align: center;
+  width: 35%;
+}
+
+.trash {
+  color: white;
+}

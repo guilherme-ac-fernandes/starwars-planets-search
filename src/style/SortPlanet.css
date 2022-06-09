@@ -1,0 +1,6 @@
+.sort-planet-container, .sort-planet-label-input {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

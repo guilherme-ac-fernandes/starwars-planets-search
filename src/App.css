@@ -4,10 +4,6 @@
   padding: 0;
 }
 
-.App {
-  text-align: center;
-}
-
 .main {
   align-items: center;
   background: url('./image/dark-space.jpg') no-repeat center fixed;
@@ -15,11 +11,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
   padding-block: 30px;
-}
-
-.star-wars-logo {
-  margin-block: 5px;
-  width: 25%;
 }
