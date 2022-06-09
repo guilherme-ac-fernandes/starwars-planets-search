@@ -33,7 +33,7 @@ function FormsFilter() {
 
   return (
     <section>
-      <form>
+      <form className="form-group">
         <label htmlFor="name-filter">
           <input
             type="text"
@@ -42,6 +42,7 @@ function FormsFilter() {
             id="name-filter"
             placeholder="Planet Name"
             onChange={ ({ target: { value } }) => setfilterName(value) }
+            className="form-control"
           />
         </label>
 
@@ -52,6 +53,7 @@ function FormsFilter() {
             name="column-filter"
             id="column-filter"
             onChange={ ({ target: { value } }) => setFilterColumn(value) }
+            className="form-control"
           >
             { renderColumnOptions() }
           </select>
@@ -64,6 +66,7 @@ function FormsFilter() {
             name="comparison-filter"
             id="comparison-filter"
             onChange={ ({ target: { value } }) => setFilterComparison(value) }
+            className="form-control"
           >
             <option value="maior que">maior que</option>
             <option value="igual a">igual a</option>
@@ -79,6 +82,7 @@ function FormsFilter() {
             id="value-filter"
             placeholder="Number"
             onChange={ ({ target: { value } }) => setFilterNumber(value) }
+            className="form-control"
           />
         </label>
 
@@ -90,6 +94,7 @@ function FormsFilter() {
             comparison: filterComparison,
             value: filterNumber,
           }) }
+          className="btn btn-primary"
         >
           Filter
         </button>
@@ -102,13 +107,16 @@ function FormsFilter() {
             name="column-sort"
             id="column-sort"
             onChange={ ({ target: { value } }) => setSortColumn(value) }
+            className="form-control"
           >
             { renderColumnOptions() }
           </select>
         </label>
 
-        <label htmlFor="column-sort-input-asc">
-          ASC
+        <label
+          htmlFor="column-sort-input-asc"
+          className="form-check-label"
+        >
           <input
             type="radio"
             data-testid="column-sort-input-asc"
@@ -116,11 +124,15 @@ function FormsFilter() {
             id="column-sort-input-asc"
             name="column-sort-input"
             onChange={ ({ target: { value } }) => setSortRadio(value) }
+            className="form-check-input"
           />
+          ASC
         </label>
 
-        <label htmlFor="column-sort-input-desc">
-          DESC
+        <label
+          htmlFor="column-sort-input-desc"
+          className="form-check-label"
+        >
           <input
             type="radio"
             data-testid="column-sort-input-desc"
@@ -128,7 +140,9 @@ function FormsFilter() {
             id="column-sort-input-desc"
             name="column-sort-input"
             onChange={ ({ target: { value } }) => setSortRadio(value) }
+            className="form-check-input"
           />
+          DESC
         </label>
 
         <button
@@ -138,6 +152,7 @@ function FormsFilter() {
             column: sortColumn,
             sort: sortRadio,
           }) }
+          className="btn btn-warning"
         >
           Sort Planets
         </button>
@@ -146,6 +161,7 @@ function FormsFilter() {
           type="button"
           data-testid="button-remove-filters"
           onClick={ handleRemoveAllFilters }
+          className="btn btn-danger"
         >
           Remove Filters
         </button>
