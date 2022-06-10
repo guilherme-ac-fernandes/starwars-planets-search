@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
-
-const INICIAL_STATE_FILTER_BY_NUMBER = {
-  column: '',
-  comparison: '',
-  value: '',
-};
-
-const INICIAL_STATE_ORDER = {
-  column: '',
-  sort: '',
-};
-
-const INICIAL_COLUMN_OPTIONS = [
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
+import sortByPopulationASC from '../helpers/sortServices';
+import {
+  INICIAL_COLUMN_OPTIONS,
+  INICIAL_STATE_FILTER_BY_NAME,
+  INICIAL_STATE_FILTER_BY_NUMBER,
+  INICIAL_STATE_ORDER,
+} from '../helpers/inicialStates';
 
 function StarWarsProvider({ children }) {
   const [data, setData] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState([]);
-  const [filterByName, setFilterByName] = useState({ name: '' });
+  const [filterByName, setFilterByName] = useState(INICIAL_STATE_FILTER_BY_NAME);
   const [filterByNumber, setFilterByNumber] = useState(INICIAL_STATE_FILTER_BY_NUMBER);
   const [columnOption, setColumnOption] = useState(INICIAL_COLUMN_OPTIONS);
   const [order, setOrder] = useState(INICIAL_STATE_ORDER);
@@ -42,18 +30,6 @@ function StarWarsProvider({ children }) {
         setLoading(false);
       });
   }, []);
-
-  const sortByPopulationASC = (a, b) => {
-    // Proveniente da Documentação
-    // link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
-    const ONE_NEGATIVE = -1;
-    const ONE_POSITIVE = 1;
-    if (nameA < nameB) return ONE_NEGATIVE;
-    if (nameA > nameB) return ONE_POSITIVE;
-    return 0;
-  };
 
   const applyFilterOnData = (startData, array) => array.reduce((acc, curr) => {
     const newAcc = acc.filter((planet) => {
@@ -152,18 +128,18 @@ function StarWarsProvider({ children }) {
   };
 
   const contextValue = {
-    loading,
+    columnOption,
     dataFilter,
     filterByName,
     filterByNumber,
-    setFilterByName,
-    handleButtonFilter,
     filters,
-    columnOption,
+    loading,
     order,
+    handleButtonFilter,
     handleRemoveFilter,
     handleRemoveAllFilters,
     handleSort,
+    setFilterByName,
   };
 
   return (

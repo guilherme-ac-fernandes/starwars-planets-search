@@ -1,14 +1,7 @@
 import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import { INICIAL_COLUMN_OPTIONS } from '../helpers/inicialStates';
 import '../style/SortPlanet.css';
-
-const INICIAL_COLUMN_OPTIONS = [
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
 
 function SortPlanet() {
   const { handleSort } = useContext(StarWarsContext);

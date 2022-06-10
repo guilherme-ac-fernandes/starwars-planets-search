@@ -15,3 +15,17 @@
 .loading-table, .invalid-text {
   margin-top: 60px;
 }
+
+table {
+
+  /* Aplicação da estilização com overflow
+  horizontal proveniente do Stack Overflow (link:
+  https://stackoverflow.com/questions/19794211/horizontal-scroll-on-overflow-of-table) */
+  display: block;
+  line-height: 60px;
+  margin: 0 auto;
+  max-width: fit-content;
+  overflow-x: auto;
+  padding-top: 30px;
+  white-space: nowrap;
+}

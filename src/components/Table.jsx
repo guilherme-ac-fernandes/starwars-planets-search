@@ -24,25 +24,28 @@ function Table() {
 
   return (
     <section className="table-container">
-      <table className="table table-hover table-dark table-sm align-middle">
-        <thead>
-          <tr className="align-middle">
-            <th scope="col">Name</th>
-            <th scope="col">Rotation Period</th>
-            <th scope="col">Orbital Period</th>
-            <th scope="col">Diameter</th>
-            <th scope="col">Climate</th>
-            <th scope="col">Gravity</th>
-            <th scope="col">Terrain</th>
-            <th scope="col">Surface Water</th>
-            <th scope="col">Population</th>
-            <th scope="col">Films</th>
-            <th scope="col">Created</th>
-            <th scope="col">Edited</th>
-            <th scope="col">URL</th>
-          </tr>
-        </thead>
-        { !loading && (
+      { loading && <h2 className="loading-table">Loading...</h2> }
+      { (!loading && dataFilter.length > 0) && (
+        <table
+          className="table table-hover table-dark table-sm align-middle table-bordered"
+        >
+          <thead>
+            <tr className="align-middle">
+              <th scope="col">Name</th>
+              <th scope="col">Rotation Period</th>
+              <th scope="col">Orbital Period</th>
+              <th scope="col">Diameter</th>
+              <th scope="col">Climate</th>
+              <th scope="col">Gravity</th>
+              <th scope="col">Terrain</th>
+              <th scope="col">Surface Water</th>
+              <th scope="col">Population</th>
+              <th scope="col">Films</th>
+              <th scope="col">Created</th>
+              <th scope="col">Edited</th>
+              <th scope="col">URL</th>
+            </tr>
+          </thead>
           <tbody>
             {dataFilter.map((planet) => (
               <tr key={ planet.name }>
@@ -62,9 +65,8 @@ function Table() {
               </tr>
             ))}
           </tbody>
-        )}
-      </table>
-      { loading && <h2 className="loading-table">Loading...</h2>}
+        </table>
+      ) }
       { (!loading && dataFilter.length === 0)
       && <h2 className="invalid-text">Invalid Search 😭</h2>}
     </section>
