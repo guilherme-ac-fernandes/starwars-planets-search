@@ -1,6 +1,13 @@
 .display-filters-container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 5px;
+  justify-content: flex-start;
   list-style: none;
-  margin-block: 20px;
+  margin: 20px auto;
+  max-width: 95%;
   text-transform: uppercase;
 }
 
@@ -10,13 +17,18 @@
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) , 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   margin-block: 10px;
   text-align: center;
-  width: 35%;
+  width: 18%;
+}
+
+.filter-container-description {
+  width: 70%;
 }
 
 .trash {
   color: white;
+  font-size: 20px;
 }

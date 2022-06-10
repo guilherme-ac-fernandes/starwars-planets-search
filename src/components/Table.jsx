@@ -65,6 +65,8 @@ function Table() {
         )}
       </table>
       { loading && <h2 className="loading-table">Loading...</h2>}
+      { (!loading && dataFilter.length === 0)
+      && <h2 className="invalid-text">Invalid Search 😭</h2>}
     </section>
   );
 }

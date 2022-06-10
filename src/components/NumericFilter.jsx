@@ -24,18 +24,23 @@ function NumericFilter() {
 
   return (
     <form className="form-group numeric-filter-container">
-      <label htmlFor="column-filter">
-        <select
-          data-testid="column-filter"
-          value={ filterColumn }
-          name="column-filter"
-          id="column-filter"
-          onChange={ ({ target: { value } }) => setFilterColumn(value) }
-          className="form-control"
-        >
-          { renderColumnOptions() }
-        </select>
-      </label>
+      {columnOption.length >= 1 ? (
+        <label htmlFor="column-filter">
+          <select
+            data-testid="column-filter"
+            value={ filterColumn }
+            name="column-filter"
+            id="column-filter"
+            onChange={ ({ target: { value } }) => setFilterColumn(value) }
+            className="form-control column-filter"
+          >
+            { renderColumnOptions() }
+          </select>
+        </label>
+      ) : (
+        <div>Maximum Filters Reached</div>
+      )}
+
       <label htmlFor="comparison-filter">
         <select
           data-testid="comparison-filter"
@@ -64,11 +69,14 @@ function NumericFilter() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => handleButtonFilter({
-          column: filterColumn,
-          comparison: filterComparison,
-          value: filterNumber,
-        }) }
+        disabled={ columnOption.length === 0 }
+        onClick={ () => {
+          handleButtonFilter({
+            column: filterColumn,
+            comparison: filterComparison,
+            value: filterNumber,
+          }, setFilterColumn);
+        } }
         className="btn btn-primary"
       >
         Filter

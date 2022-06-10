@@ -76,18 +76,19 @@ function StarWarsProvider({ children }) {
     setDataFilter(arrayPlanetsFilter);
   }, [filterByName, data, setDataFilter]);
 
-  const handleButtonFilter = (object) => {
-    setFilterByNumber(object);
+  const handleButtonFilter = (object, setFilterColumn) => {
     const arrayFilter = [...filters, object];
+    const arrayPlanetsFilter = applyFilterOnData(dataFilter, arrayFilter);
     const columnOptionFilter = arrayFilter.reduce((acc, curr) => {
       const newAcc = acc.filter((option) => option !== curr.column);
       return newAcc;
     }, columnOption);
 
+    setFilterByNumber(object);
     setColumnOption(columnOptionFilter);
-    const arrayPlanetsFilter = applyFilterOnData(dataFilter, arrayFilter);
     setFilters(arrayFilter);
     setDataFilter(arrayPlanetsFilter);
+    setFilterColumn(columnOptionFilter[0]);
   };
 
   const handleRemoveFilter = (option) => {

@@ -7,11 +7,11 @@ function DisplayFilters() {
   return (
     <ul className="display-filters-container">
       {filters.map((filter, index) => {
-        const { column, comparison, number } = filter;
-        const string = `${column} ${comparison} ${number}`;
+        const { column, comparison, value } = filter;
+        const string = `${column} ${comparison} ${value}`;
         return (
           <li key={ index } data-testid="filter" className="filter-container">
-            <span>{ string }</span>
+            <span className="filter-container-description">{ string }</span>
             <button
               type="button"
               onClick={ () => handleRemoveFilter(filter) }

@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 95%;
+  width: 90%;
 }
 
 .table-film-display {
@@ -12,6 +12,6 @@
   text-decoration: none;
 }
 
-.loading-table {
+.loading-table, .invalid-text {
   margin-top: 60px;
 }

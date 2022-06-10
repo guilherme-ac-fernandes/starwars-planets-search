@@ -2,12 +2,20 @@ import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 import '../style/SortPlanet.css';
 
+const INICIAL_COLUMN_OPTIONS = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 function SortPlanet() {
-  const { columnOption, handleSort } = useContext(StarWarsContext);
+  const { handleSort } = useContext(StarWarsContext);
   const [sortColumn, setSortColumn] = useState('population');
   const [sortRadio, setSortRadio] = useState('ASC');
 
-  const renderColumnOptions = () => (columnOption.map((option) => (
+  const renderColumnOptions = () => (INICIAL_COLUMN_OPTIONS.map((option) => (
     <option
       value={ option }
       key={ option }
