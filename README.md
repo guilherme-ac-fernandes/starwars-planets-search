@@ -7,5 +7,5 @@
 
 #### Demostração
 <p align="center">
-  <img src="" alt="Star Wars Planets Search Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/starwars-planets-search/blob/main/starwars-planets-search.gif" alt="Star Wars Planets Search Gif - Demostração"/>
 </p>
