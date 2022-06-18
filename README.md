@@ -1,16 +1,11 @@
-# 🚧 README em construção 🚧
+## Projeto Star Wars Planet Search
 
-<!-- Olá, Tryber!
+#### Consiste em uma aplicação web construida para busca dos planetas presentes na franquia Star Wars em relação aos parâmetros retornados pela API, possibilidando filtrar por: população, período de rotação, diâmetro, período orbital e percentual de água presente na superfície. Bom como o ordenação crescente e decrescente dos mesmos.
+> Esta aplicação foi desenvolvida através da bibliotecas React, utilizando Context API e Hooks.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+:point_right: **Acessar:** _[Clique Aqui](colocar)_
 
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+#### Demostração
+<p align="center">
+  <img src="" alt="Star Wars Planets Search Gif - Demostração"/>
+</p>
