@@ -1,9 +1,9 @@
 # Projeto Star Wars Planet Search
 
-:point_right: **Acessar:** _[Clique Aqui](colocar)_
-
 ## Contexto
 Este projeto trata-se de uma aplicação web construída para busca dos planetas presentes na franquia Star Wars em relação aos parâmetros retornados pela API, possibilidando filtrar por: população, período de rotação, diâmetro, período orbital e percentual de água presente na superfície. Bem como o ordenação crescente e decrescente dos mesmos.
+
+:point_right: **Acessar:** _[Clique Aqui](https://starwars-planets-search-alpha.vercel.app)_
 
 ## Técnologias usadas
 
