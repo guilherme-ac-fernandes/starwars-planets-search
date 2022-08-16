@@ -18,5 +18,5 @@ npm start // para iniciar a aplicação
 👨🏻‍💻 **Acessar:** _[Clique Aqui](https://starwars-planets-search-alpha.vercel.app)_
 
 <p align="center">
-  <img src="https://github.com/guilherme-ac-fernandes/starwars-planets-search/blob/main/starwars-planets-search.gif" alt="Star Wars Planets Search Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/starwars-planets-search/blob/main/starwars-planets-search.png" alt="Star Wars Planets Search Gif - Demostração"/>
 </p>
