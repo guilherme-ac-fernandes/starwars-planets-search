@@ -1,11 +1,22 @@
-## Projeto Star Wars Planet Search
+# Projeto Star Wars Planet Search 🪐
 
-#### Consiste em uma aplicação web construida para busca dos planetas presentes na franquia Star Wars em relação aos parâmetros retornados pela API, possibilidando filtrar por: população, período de rotação, diâmetro, período orbital e percentual de água presente na superfície. Bom como o ordenação crescente e decrescente dos mesmos.
-> Esta aplicação foi desenvolvida através da bibliotecas React, utilizando Context API e Hooks.
+Aplicação web construída para busca dos planetas presentes na franquia Star Wars em relação aos parâmetros retornados pela API, possibilidando filtrar por: população, período de rotação, diâmetro, período orbital e percentual de água presente na superfície.
 
-:point_right: **Acessar:** _[Clique Aqui](colocar)_
+* Construída utilizado React, Context API, Hooks e CSS3.
 
-#### Demostração
+### Instruções
+
+- Para rodar a aplicação localmente, realize o clone do projeto e utilize os comandos a seguir para inicializar:
+
+```
+npm install // para instalar as dependências
+npm start // para iniciar a aplicação
+```
+
+### Demostração
+
+👨🏻‍💻 **Acessar:** _[Clique Aqui](https://starwars-planets-search-alpha.vercel.app)_
+
 <p align="center">
-  <img src="" alt="Star Wars Planets Search Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/starwars-planets-search/blob/main/starwars-planets-search.gif" alt="Star Wars Planets Search Gif - Demostração"/>
 </p>
