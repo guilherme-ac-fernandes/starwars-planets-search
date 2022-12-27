@@ -1,4 +1,4 @@
-# Projeto Star Wars Planet Search 🪐
+# Projeto Star Wars Planet Search 🪐🌎
 
 Aplicação web construída para busca dos planetas presentes na franquia Star Wars. Em relação aos parâmetros retornados pela API, é possível filtrar por: população, período de rotação, diâmetro, período orbital e percentual de água presente na superfície.
 
